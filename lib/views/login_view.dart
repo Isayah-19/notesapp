@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'dart:developer' as devtools show log;
+
 import 'package:flutter/material.dart';
 import 'package:notesapp/constants/routes.dart';
 
@@ -90,12 +90,10 @@ class _LoginViewState extends State<LoginView> {
                 );
               }
 
-              // final userCredential =
-              //  await FirebaseAuth.instance.signInWithEmailAndPassword(
-              // email: email,
-              // password: password,
-              //);
-              // devtools.log(userCredential.toString());
+              await FirebaseAuth.instance.signInWithEmailAndPassword(
+                email: email,
+                password: password,
+              );
             },
             child: const Text('Login'),
           ),
