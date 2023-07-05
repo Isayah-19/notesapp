@@ -6,7 +6,6 @@ import 'package:notesapp/views/register_view.dart';
 import 'package:notesapp/views/verify_email_view.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'dart:developer' as devtools show log;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +22,7 @@ void main() {
           //the value of every key inside the routes needs to be a function
           '/login/': (context) => const LoginView(),
           '/register/': (context) => const RegisterView(),
+          '/notes/': (context) => const NotesView(),
         }),
   );
 }
@@ -81,6 +81,7 @@ class _NotesViewState extends State<NotesView> {
                   //signing the user out
                   if (shouldLogout) {
                     await FirebaseAuth.instance.signOut();
+                    // ignore: use_build_context_synchronously
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       '/login/',
                       (_) => false,
