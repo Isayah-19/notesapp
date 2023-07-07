@@ -110,6 +110,7 @@ class _NotesViewState extends State<NotesView> {
 Future<bool> showLogOutDialog(BuildContext context) {
   return showDialog<bool>(
     context: context,
+    //barrierDismissible:false, //user must tap a button and can't dismiss the alart
     builder: (context) {
       return AlertDialog(
         title: const Text('Log out'),
@@ -132,5 +133,5 @@ Future<bool> showLogOutDialog(BuildContext context) {
     },
   ).then((value) =>
       value ??
-      false); //if the user opts oot of the showDialog then this function comes into play
+      false); //if the user opts out of the showDialog then this function comes into play
 }
