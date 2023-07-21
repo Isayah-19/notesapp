@@ -6,8 +6,10 @@ import 'package:notesapp/services/auth/firebase_auth_provider.dart';
 //It relays the messages of the given auth provider, but can have more logic
 
 class AuthService implements AuthProvider {
+  //Dependency injection
+  //AuthService is dependent on a provider using a const constructor initializer,
+  //we are injecting the provider into it
   final AuthProvider provider;
-
   const AuthService(this.provider);
 
   //the responsibility of the firebase factory here is to
