@@ -9,6 +9,11 @@ import 'package:path/path.dart' show join;
 class NotesService {
   Database? _db;
   List<DatabaseNote> _notes = [];
+
+  static final NotesService _shared = NotesService._sharedInstance();
+  NotesService._sharedInstance(); // private intializer to this class
+  factory NotesService() => _shared;
+
   // _notesStreamContoller is in control of changes to the list above
   final _notesStreamContoller =
       StreamController<List<DatabaseNote>>.broadcast();
