@@ -11,12 +11,17 @@ class NotesService {
   List<DatabaseNote> _notes = [];
 
   static final NotesService _shared = NotesService._sharedInstance();
-  NotesService._sharedInstance(); // private intializer to this class
+  // private intializer to this class
+  NotesService._sharedInstance() {
+    _notesStreamContoller =
+        StreamController<List<DatabaseNote>>.broadcast(onListen: () {
+      _notesStreamContoller.sink.add(_notes);
+    });
+  }
   factory NotesService() => _shared;
 
   // _notesStreamContoller is in control of changes to the list above
-  final _notesStreamContoller =
-      StreamController<List<DatabaseNote>>.broadcast();
+  late final StreamController<List<DatabaseNote>> _notesStreamContoller;
 
   Stream<List<DatabaseNote>> get allNotes => _notesStreamContoller.stream;
 
